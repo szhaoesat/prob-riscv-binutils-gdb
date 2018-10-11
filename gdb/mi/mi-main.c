@@ -19,6 +19,8 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
+#define ARCH_GAP8
+
 #include "defs.h"
 #include "arch-utils.h"
 #include "target.h"
@@ -1027,9 +1029,11 @@ mi_cmd_data_list_register_names (char *command, char **argv, int argc)
 	   regnum++)
 	{
 	  if (gdbarch_register_name (gdbarch, regnum) == NULL
-	      || *(gdbarch_register_name (gdbarch, regnum)) == '\0')
+	      || *(gdbarch_register_name (gdbarch, regnum)) == '\0') {
+#ifndef ARCH_GAP8
 	    uiout->field_string (NULL, "");
-	  else
+#endif
+	  } else
 	    uiout->field_string (NULL, gdbarch_register_name (gdbarch, regnum));
 	}
     }

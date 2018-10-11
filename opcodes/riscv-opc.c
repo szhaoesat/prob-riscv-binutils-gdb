@@ -126,7 +126,8 @@ const struct riscv_opcode riscv_opcodes[] =
 {
 /* name,      isa,   operands, match, mask, match_func, pinfo.  */
 {"unimp",     "C",   "",  0, 0xffffU,  match_opcode, 0 },
-{"unimp",     "I",   "",  MATCH_CSRRW | (CSR_CYCLE << OP_SH_CSR), 0xffffffffU,  match_opcode, 0 }, /* csrw cycle, x0 */
+/* {"unimp",     "I",   "",  MATCH_CSRRW | (CSR_CYCLE << OP_SH_CSR), 0xffffffffU,  match_opcode, 0 }, */
+/* csrw cycle, x0 */
 {"ebreak",    "C",   "",  MATCH_C_EBREAK, MASK_C_EBREAK, match_opcode, INSN_ALIAS },
 {"ebreak",    "I",   "",    MATCH_EBREAK, MASK_EBREAK, match_opcode, 0 },
 {"sbreak",    "C",   "",  MATCH_C_EBREAK, MASK_C_EBREAK, match_opcode, INSN_ALIAS },

@@ -23,6 +23,8 @@
    along with this program; see the file COPYING3. If not,
    see <http://www.gnu.org/licenses/>.  */
 
+#define ARCH_GAP8
+
 #include "sysdep.h"
 #include "dis-asm.h"
 #include "libiberty.h"

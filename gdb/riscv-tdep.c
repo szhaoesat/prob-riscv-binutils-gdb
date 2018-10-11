@@ -22,6 +22,8 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
+#define ARCH_GAP8
+
 #include "defs.h"
 #include "frame.h"
 #include "inferior.h"
@@ -210,7 +212,11 @@ riscv_breakpoint_kind_from_pc (struct gdbarch *gdbarch, CORE_ADDR *pcptr)
          breakpoint before connecting to a live target. A suggested workaround is
          to look at the ELF file in this case.  */
       struct frame_info *frame = get_current_frame ();
+#ifndef ARCH_GAP8
       uint32_t misa = get_frame_register_unsigned (frame, RISCV_CSR_MISA_REGNUM);
+#else
+      uint32_t misa = 1<<2;
+#endif
       if (misa & (1<<2))
         gdbarch_tdep (gdbarch)->supports_compressed_isa = AUTO_BOOLEAN_TRUE;
       else
@@ -505,10 +511,12 @@ riscv_register_type (struct gdbarch *gdbarch,
     }
   else
     {
+#ifndef ARCH_GAP8
       if (regnum == RISCV_CSR_FFLAGS_REGNUM
 	  || regnum == RISCV_CSR_FRM_REGNUM
 	  || regnum == RISCV_CSR_FCSR_REGNUM)
 	return builtin_type (gdbarch)->builtin_int32;
+#endif
 
       switch (regsize)
 	{
@@ -613,6 +621,7 @@ riscv_print_register_formatted (struct ui_file *file, struct frame_info *frame,
 			    (int)((d >> 1) & 0x1),
 			    (int)((d >> 0) & 0x1));
 	}
+#ifndef ARCH_GAP8
       else if (regnum == RISCV_CSR_MISA_REGNUM)
         {
           int base;
@@ -669,6 +678,7 @@ riscv_print_register_formatted (struct ui_file *file, struct frame_info *frame,
 	      fprintf_filtered (file, "FRM:%i [%s]", frm, sfrm[frm]);
 	    }
 	}
+#endif
       else if (regnum == RISCV_PRIV_REGNUM)
         {
           uint8_t priv = raw_buffer[0];
@@ -724,11 +734,14 @@ riscv_register_reggroup_p (struct gdbarch  *gdbarch,
           return 1;
     }
     return 0;
-  } else if (reggroup == float_reggroup)
+  }
+#ifndef ARCH_GAP8
+  else if (reggroup == float_reggroup)
     return (regnum >= RISCV_FIRST_FP_REGNUM && regnum <= RISCV_LAST_FP_REGNUM)
 	    || (regnum == RISCV_CSR_FCSR_REGNUM
 	        || regnum == RISCV_CSR_FFLAGS_REGNUM
 	        || regnum == RISCV_CSR_FRM_REGNUM);
+#endif
   else if (reggroup == general_reggroup)
     return regnum < RISCV_FIRST_FP_REGNUM;
   else if (reggroup == restore_reggroup || reggroup == save_reggroup)
