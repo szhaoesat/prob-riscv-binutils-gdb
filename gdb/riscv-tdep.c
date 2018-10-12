@@ -169,6 +169,8 @@ static const struct register_alias riscv_register_aliases[] =
 #undef DECLARE_CSR
 };
 
+static char RiscvRegExist[RISCV_NUM_REGS];
+
 static enum auto_boolean use_compressed_breakpoints;
 /*
 static void
@@ -185,6 +187,18 @@ show_use_compressed_breakpoints (struct ui_file *file, int from_tty,
 
 static struct cmd_list_element *setriscvcmdlist = NULL;
 static struct cmd_list_element *showriscvcmdlist = NULL;
+
+static void SetupRegExists()
+
+{
+	int i;
+
+	for (i=0; i<RISCV_NUM_REGS; i++) RiscvRegExist[i] = 0;
+	for (i=0; i<(sizeof(riscv_register_aliases)/sizeof(register_alias)); i++) RiscvRegExist[riscv_register_aliases[i].regnum] = 1;
+#ifdef ARCH_GAP8
+	for (i=RISCV_FIRST_FP_REGNUM; i<=RISCV_LAST_FP_REGNUM; i++) RiscvRegExist[i] = 0;
+#endif
+}
 
 static void
 show_riscv_command (char *args, int from_tty)
@@ -270,6 +284,8 @@ register_name (struct gdbarch *gdbarch,
   int i;
   static char buf[20];
 
+  if (RiscvRegExist[regnum] == 0)  return NULL;
+
   if (tdesc_has_registers (gdbarch_target_desc (gdbarch)))
     return tdesc_register_name (gdbarch, regnum);
   /* Prefer to use the alias. */
@@ -283,6 +299,7 @@ register_name (struct gdbarch *gdbarch,
 
   if (regnum >= RISCV_ZERO_REGNUM && regnum <= RISCV_LAST_FP_REGNUM)
       return riscv_gdb_reg_names[regnum];
+
 
   if (regnum >= RISCV_FIRST_CSR_REGNUM && regnum <= RISCV_LAST_CSR_REGNUM)
     {
@@ -1354,6 +1371,7 @@ void
 _initialize_riscv_tdep (void)
 {
   gdbarch_register (bfd_arch_riscv, riscv_gdbarch_init, NULL);
+  SetupRegExists();
 
   /* Add root prefix command for all "set riscv"/"show riscv" commands.  */
   add_prefix_cmd ("riscv", no_class, set_riscv_command,
