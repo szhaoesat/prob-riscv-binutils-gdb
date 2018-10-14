@@ -289,8 +289,9 @@ register_name (struct gdbarch *gdbarch,
   if (tdesc_has_registers (gdbarch_target_desc (gdbarch)))
     return tdesc_register_name (gdbarch, regnum);
   /* Prefer to use the alias. */
-  if (prefer_alias &&
-      regnum >= RISCV_ZERO_REGNUM && regnum <= RISCV_LAST_REGNUM)
+  if (prefer_alias
+/* && regnum >= RISCV_ZERO_REGNUM && regnum <= RISCV_LAST_REGNUM */
+	)
     {
       for (i = 0; i < ARRAY_SIZE (riscv_register_aliases); ++i)
 	if (regnum == riscv_register_aliases[i].regnum)
@@ -321,7 +322,8 @@ static const char *
 riscv_register_name (struct gdbarch *gdbarch,
 		     int regnum)
 {
-  return register_name(gdbarch, regnum, 0);
+  // return register_name(gdbarch, regnum, 0);
+  return register_name(gdbarch, regnum, 1);
 }
 
 /* Reads a function return value of type TYPE.  */
