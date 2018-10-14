@@ -22,6 +22,8 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
+#define ARCH_GAP8
+
 #include "defs.h"
 #include "frame.h"
 #include "inferior.h"
@@ -167,6 +169,8 @@ static const struct register_alias riscv_register_aliases[] =
 #undef DECLARE_CSR
 };
 
+static char RiscvRegExist[RISCV_NUM_REGS];
+
 static enum auto_boolean use_compressed_breakpoints;
 /*
 static void
@@ -183,6 +187,18 @@ show_use_compressed_breakpoints (struct ui_file *file, int from_tty,
 
 static struct cmd_list_element *setriscvcmdlist = NULL;
 static struct cmd_list_element *showriscvcmdlist = NULL;
+
+static void SetupRegExists()
+
+{
+	int i;
+
+	for (i=0; i<RISCV_NUM_REGS; i++) RiscvRegExist[i] = 0;
+	for (i=0; i<(sizeof(riscv_register_aliases)/sizeof(register_alias)); i++) RiscvRegExist[riscv_register_aliases[i].regnum] = 1;
+#ifdef ARCH_GAP8
+	for (i=RISCV_FIRST_FP_REGNUM; i<=RISCV_LAST_FP_REGNUM; i++) RiscvRegExist[i] = 0;
+#endif
+}
 
 static void
 show_riscv_command (char *args, int from_tty)
@@ -210,7 +226,11 @@ riscv_breakpoint_kind_from_pc (struct gdbarch *gdbarch, CORE_ADDR *pcptr)
          breakpoint before connecting to a live target. A suggested workaround is
          to look at the ELF file in this case.  */
       struct frame_info *frame = get_current_frame ();
+#ifndef ARCH_GAP8
       uint32_t misa = get_frame_register_unsigned (frame, RISCV_CSR_MISA_REGNUM);
+#else
+      uint32_t misa = 1<<2;
+#endif
       if (misa & (1<<2))
         gdbarch_tdep (gdbarch)->supports_compressed_isa = AUTO_BOOLEAN_TRUE;
       else
@@ -264,11 +284,14 @@ register_name (struct gdbarch *gdbarch,
   int i;
   static char buf[20];
 
+  if (RiscvRegExist[regnum] == 0)  return NULL;
+
   if (tdesc_has_registers (gdbarch_target_desc (gdbarch)))
     return tdesc_register_name (gdbarch, regnum);
   /* Prefer to use the alias. */
-  if (prefer_alias &&
-      regnum >= RISCV_ZERO_REGNUM && regnum <= RISCV_LAST_REGNUM)
+  if (prefer_alias
+/* && regnum >= RISCV_ZERO_REGNUM && regnum <= RISCV_LAST_REGNUM */
+	)
     {
       for (i = 0; i < ARRAY_SIZE (riscv_register_aliases); ++i)
 	if (regnum == riscv_register_aliases[i].regnum)
@@ -277,6 +300,7 @@ register_name (struct gdbarch *gdbarch,
 
   if (regnum >= RISCV_ZERO_REGNUM && regnum <= RISCV_LAST_FP_REGNUM)
       return riscv_gdb_reg_names[regnum];
+
 
   if (regnum >= RISCV_FIRST_CSR_REGNUM && regnum <= RISCV_LAST_CSR_REGNUM)
     {
@@ -298,7 +322,8 @@ static const char *
 riscv_register_name (struct gdbarch *gdbarch,
 		     int regnum)
 {
-  return register_name(gdbarch, regnum, 0);
+  // return register_name(gdbarch, regnum, 0);
+  return register_name(gdbarch, regnum, 1);
 }
 
 /* Reads a function return value of type TYPE.  */
@@ -505,10 +530,12 @@ riscv_register_type (struct gdbarch *gdbarch,
     }
   else
     {
+#ifndef ARCH_GAP8
       if (regnum == RISCV_CSR_FFLAGS_REGNUM
 	  || regnum == RISCV_CSR_FRM_REGNUM
 	  || regnum == RISCV_CSR_FCSR_REGNUM)
 	return builtin_type (gdbarch)->builtin_int32;
+#endif
 
       switch (regsize)
 	{
@@ -613,6 +640,7 @@ riscv_print_register_formatted (struct ui_file *file, struct frame_info *frame,
 			    (int)((d >> 1) & 0x1),
 			    (int)((d >> 0) & 0x1));
 	}
+#ifndef ARCH_GAP8
       else if (regnum == RISCV_CSR_MISA_REGNUM)
         {
           int base;
@@ -669,6 +697,7 @@ riscv_print_register_formatted (struct ui_file *file, struct frame_info *frame,
 	      fprintf_filtered (file, "FRM:%i [%s]", frm, sfrm[frm]);
 	    }
 	}
+#endif
       else if (regnum == RISCV_PRIV_REGNUM)
         {
           uint8_t priv = raw_buffer[0];
@@ -724,11 +753,14 @@ riscv_register_reggroup_p (struct gdbarch  *gdbarch,
           return 1;
     }
     return 0;
-  } else if (reggroup == float_reggroup)
+  }
+#ifndef ARCH_GAP8
+  else if (reggroup == float_reggroup)
     return (regnum >= RISCV_FIRST_FP_REGNUM && regnum <= RISCV_LAST_FP_REGNUM)
 	    || (regnum == RISCV_CSR_FCSR_REGNUM
 	        || regnum == RISCV_CSR_FFLAGS_REGNUM
 	        || regnum == RISCV_CSR_FRM_REGNUM);
+#endif
   else if (reggroup == general_reggroup)
     return regnum < RISCV_FIRST_FP_REGNUM;
   else if (reggroup == restore_reggroup || reggroup == save_reggroup)
@@ -1341,6 +1373,7 @@ void
 _initialize_riscv_tdep (void)
 {
   gdbarch_register (bfd_arch_riscv, riscv_gdbarch_init, NULL);
+  SetupRegExists();
 
   /* Add root prefix command for all "set riscv"/"show riscv" commands.  */
   add_prefix_cmd ("riscv", no_class, set_riscv_command,
