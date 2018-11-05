@@ -2191,6 +2191,563 @@ const struct riscv_opcode riscv_opcodes[] =
 
 {"p.elw",		"Xpulpv3", "d,o(s)",	MATCH_LWU, 				MASK_LWU, 	match_opcode,   0},
 
+
+
+
+/***********************************************************************************************************************/
+/**************************************             Gap9             ***************************************************/
+/***********************************************************************************************************************/
+/* post-increment and register-register loads */
+
+{"p.lb",  		"Xgap9", "d,o(s)",  	MATCH_LB,        			MASK_LB,      	match_opcode,	0},
+{"p.lb",  		"Xgap9", "d,o(s!)", 	MATCH_LBPOST,    			MASK_LPOST,   	match_opcode,	0},
+{"p.lb",  		"Xgap9", "d,t(s)",  	MATCH_LBRR,      			MASK_LRR,     	match_opcode,	0},
+{"p.lb",  		"Xgap9", "d,t(s!)", 	MATCH_LBRRPOST,  			MASK_LRRPOST, 	match_opcode,	0},
+
+{"p.lbu", 		"Xgap9", "d,o(s)",  	MATCH_LBU,       			MASK_LBU,     	match_opcode,	0},
+{"p.lbu", 		"Xgap9", "d,o(s!)", 	MATCH_LBUPOST,   			MASK_LPOST,   	match_opcode,	0},
+{"p.lbu", 		"Xgap9", "d,t(s)",  	MATCH_LBURR,     			MASK_LRR,     	match_opcode,	0},
+{"p.lbu", 		"Xgap9", "d,t(s!)", 	MATCH_LBURRPOST, 			MASK_LRRPOST, 	match_opcode,	0},
+
+{"p.lh",  		"Xgap9", "d,o(s)",  	MATCH_LH,        			MASK_LH,      	match_opcode,	0},
+{"p.lh",  		"Xgap9", "d,o(s!)", 	MATCH_LHPOST,    			MASK_LPOST,   	match_opcode,	0},
+{"p.lh",  		"Xgap9", "d,t(s)",  	MATCH_LHRR,      			MASK_LRR,     	match_opcode,	0},
+{"p.lh",  		"Xgap9", "d,t(s!)", 	MATCH_LHRRPOST,  			MASK_LRRPOST, 	match_opcode,	0},
+
+{"p.lhu", 		"Xgap9", "d,o(s)",  	MATCH_LHU,       			MASK_LHU,     	match_opcode,	0},
+{"p.lhu", 		"Xgap9", "d,o(s!)", 	MATCH_LHUPOST,   			MASK_LPOST,   	match_opcode,	0},
+{"p.lhu", 		"Xgap9", "d,t(s)",  	MATCH_LHURR,     			MASK_LRR,     	match_opcode,	0},
+{"p.lhu", 		"Xgap9", "d,t(s!)", 	MATCH_LHURRPOST, 			MASK_LRRPOST, 	match_opcode,	0},
+
+{"p.lw",  		"Xgap9", "d,o(s)",  	MATCH_LW,        			MASK_LW,      	match_opcode,	0},
+{"p.lw",  		"Xgap9", "d,o(s!)", 	MATCH_LWPOST,    			MASK_LPOST,   	match_opcode,	0},
+{"p.lw",  		"Xgap9", "d,t(s)",  	MATCH_LWRR,      			MASK_LRR,     	match_opcode,	0},
+{"p.lw",  		"Xgap9", "d,t(s!)", 	MATCH_LWRRPOST,  			MASK_LRRPOST, 	match_opcode,	0},
+
+/* post-increment and reg-reg stores */
+
+{"p.sb",  		"Xgap9", "t,q(s)",  	MATCH_SB,        			MASK_SB,      	match_opcode,	0},
+{"p.sb",  		"Xgap9", "t,q(s!)", 	MATCH_SBPOST,    			MASK_SPOST,   	match_opcode,	0},
+{"p.sb",  		"Xgap9", "t,d(s)",  	MATCH_SBRR,      			MASK_PALU,     	match_opcode,	0},
+{"p.sb",  		"Xgap9", "t,d(s!)", 	MATCH_SBRRPOST,  			MASK_PALU, 	match_opcode,	0},
+
+{"p.sh",  		"Xgap9", "t,q(s)",  	MATCH_SH,        			MASK_SH,      	match_opcode,	0},
+{"p.sh",  		"Xgap9", "t,q(s!)", 	MATCH_SHPOST,    			MASK_SPOST,   	match_opcode,	0},
+{"p.sh",  		"Xgap9", "t,d(s)",  	MATCH_SHRR,      			MASK_PALU,     	match_opcode,	0},
+{"p.sh",  		"Xgap9", "t,d(s!)", 	MATCH_SHRRPOST,  			MASK_PALU, 	match_opcode,	0},
+
+{"p.sw",  		"Xgap9", "t,q(s)",  	MATCH_SW,        			MASK_SW,      	match_opcode,	0},
+{"p.sw",  		"Xgap9", "t,q(s!)", 	MATCH_SWPOST,    			MASK_SPOST,   	match_opcode,	0},
+{"p.sw",  		"Xgap9", "t,d(s)",  	MATCH_SWRR,      			MASK_PALU,     	match_opcode,	0},
+{"p.sw",  		"Xgap9", "t,d(s!)", 	MATCH_SWRRPOST,  			MASK_PALU, 	match_opcode,	0},
+
+/* additional ALU operations */
+
+{"p.abs",   		"Xgap9", "d,s", 	MATCH_AVG,   				MASK_PALUS,  	match_opcode,	0},
+// {"p.avgu",  		"Xgap9", "d,s,t", 	MATCH_AVGU,  				MASK_PALU,  	match_opcode,	0},
+{"p.slet",  		"Xgap9", "d,s,t", 	MATCH_SLET,  				MASK_PALU,  	match_opcode,	0},
+{"p.sletu", 		"Xgap9", "d,s,t", 	MATCH_SLETU, 				MASK_PALU,  	match_opcode,	0},
+{"p.min",   		"Xgap9", "d,s,t", 	MATCH_MIN,   				MASK_PALU,  	match_opcode,	0},
+{"p.minu",  		"Xgap9", "d,s,t", 	MATCH_MINU,  				MASK_PALU,  	match_opcode,	0},
+{"p.max",   		"Xgap9", "d,s,t", 	MATCH_MAX,   				MASK_PALU,  	match_opcode,	0},
+{"p.maxu",  		"Xgap9", "d,s,t", 	MATCH_MAXU,  				MASK_PALU,  	match_opcode,	0},
+{"p.ror",   		"Xgap9", "d,s,t", 	MATCH_ROR,   				MASK_PALU,  	match_opcode,	0},
+
+/* additional ALU operations with only a single source operand */
+
+{"p.ff1",   		"Xgap9", "d,s",   	MATCH_FF1,   				MASK_PALUS, 	match_opcode, 	0},
+{"p.fl1",   		"Xgap9", "d,s",   	MATCH_FL1,   				MASK_PALUS, 	match_opcode, 	0},
+{"p.clb",   		"Xgap9", "d,s",   	MATCH_CLB,   				MASK_PALUS, 	match_opcode, 	0},
+{"p.cnt",   		"Xgap9", "d,s",   	MATCH_CNT,   				MASK_PALUS, 	match_opcode, 	0},
+{"p.exths", 		"Xgap9", "d,s",   	MATCH_EXTHS, 				MASK_PALUS, 	match_opcode, 	0},
+{"p.exthz", 		"Xgap9", "d,s",   	MATCH_EXTHZ, 				MASK_PALUS, 	match_opcode, 	0},
+{"p.extbs", 		"Xgap9", "d,s",   	MATCH_EXTBS,		 		MASK_PALUS, 	match_opcode, 	0},
+{"p.extbz", 		"Xgap9", "d,s",   	MATCH_EXTBZ, 				MASK_PALUS, 	match_opcode, 	0},
+
+/* clip and bit manipulation */
+
+{"p.clip",   		"Xgap9", "d,s,bi", 	MATCH_CLIP,   				MASK_PALU1,  	match_opcode,	0},
+{"p.clipi",   		"Xgap9", "d,s,bi", 	MATCH_CLIP,   				MASK_PALU1,  	match_opcode,	0},
+{"p.clipr",   		"Xgap9", "d,s,t", 	MATCH_CLIPR,   				MASK_PALU,  	match_opcode,	0},
+{"p.clipu",   		"Xgap9", "d,s,bi", 	MATCH_CLIPU,   				MASK_PALU1,  	match_opcode,	0},
+{"p.clipui",   		"Xgap9", "d,s,bi", 	MATCH_CLIPU,   				MASK_PALU1,  	match_opcode,	0},
+{"p.clipur",   		"Xgap9", "d,s,t", 	MATCH_CLIPUR,  				MASK_PALU,  	match_opcode,	0},
+
+{"p.extract",  		"Xgap9", "d,s,b5,bi",	MATCH_EXTRACT, 				MASK_PALU2,  	match_opcode,	0},
+{"p.extracti", 		"Xgap9", "d,s,b5,bi",	MATCH_EXTRACT, 				MASK_PALU2,  	match_opcode,	0},
+{"p.extractr", 		"Xgap9", "d,s,t",	MATCH_EXTRACTR,				MASK_PALU,  	match_opcode,	0},
+{"p.extractu", 		"Xgap9", "d,s,b5,bi",	MATCH_EXTRACTU, 			MASK_PALU2,  	match_opcode,	0},
+{"p.extractui", 	"Xgap9", "d,s,b5,bi",	MATCH_EXTRACTU, 			MASK_PALU2,  	match_opcode,	0},
+{"p.extractur", 	"Xgap9", "d,s,t",	MATCH_EXTRACTUR, 			MASK_PALU,  	match_opcode,	0},
+{"p.insert",  		"Xgap9", "d,s,b5,bi",	MATCH_INSERT, 				MASK_PALU2,  	match_opcode,	0},
+{"p.inserti",  		"Xgap9", "d,s,b5,bi",	MATCH_INSERT, 				MASK_PALU2,  	match_opcode,	0},
+{"p.insertr",  		"Xgap9", "d,s,t",	MATCH_INSERTR, 				MASK_PALU,  	match_opcode,	0},
+{"p.bset",  		"Xgap9", "d,s,b5,bi",	MATCH_BSET, 				MASK_PALU2,  	match_opcode,	0},
+{"p.bseti",  		"Xgap9", "d,s,b5,bi",	MATCH_BSET, 				MASK_PALU2,  	match_opcode,	0},
+{"p.bsetr",  		"Xgap9", "d,s,t",	MATCH_BSETR, 				MASK_PALU,  	match_opcode,	0},
+{"p.bclr",  		"Xgap9", "d,s,b5,bi",	MATCH_BCLR, 				MASK_PALU2,  	match_opcode,	0},
+{"p.bclri",  		"Xgap9", "d,s,b5,bi",	MATCH_BCLR, 				MASK_PALU2,  	match_opcode,	0},
+{"p.bclrr",  		"Xgap9", "d,s,t",	MATCH_BCLRR, 				MASK_PALU,  	match_opcode,	0},
+
+/* hardware loops */
+
+{"lp.starti", 		"Xgap9", "di,b1",    	MATCH_HWLP_STARTI, 			MASK_HWLP_STARTI,match_opcode, 	0},
+{"lp.endi",   		"Xgap9", "di,b1",    	MATCH_HWLP_ENDI,   			MASK_HWLP_ENDI,  match_opcode, 	0},
+{"lp.count",  		"Xgap9", "di,s",     	MATCH_HWLP_COUNT,  			MASK_HWLP_COUNT, match_opcode, 	0},
+{"lp.counti", 		"Xgap9", "di,ji",    	MATCH_HWLP_COUNTI, 			MASK_HWLP_COUNTI,match_opcode, 	0},
+{"lp.setup",  		"Xgap9", "di,s,b1",  	MATCH_HWLP_SETUP,  			MASK_HWLP_SETUP, match_opcode, 	0},
+{"lp.setupi", 		"Xgap9", "di,ji,b2", 	MATCH_HWLP_SETUPI, 			MASK_HWLP_SETUPI,match_opcode, 	0},
+
+/* 32x32 into 32 multiplication */
+
+{"p.mul",      		"Xgap9", "d,s,t",  	MATCH_MUL, 				MASK_MUL, 	match_opcode,  	0},
+
+/* 32x32 into 64 support */
+
+{"p.mulh",      	"Xgap9", "d,s,t",  	MATCH_MULH, 				MASK_MULH, 	match_opcode,  0},
+{"p.mulhu",     	"Xgap9", "d,s,t",  	MATCH_MULHU, 				MASK_MULHU, 	match_opcode,  0},
+{"p.mulhsu",    	"Xgap9", "d,s,t",  	MATCH_MULHSU, 				MASK_MULHSU, 	match_opcode,  0},
+
+/* 32 bit div and rem */
+
+{"p.div",      		"Xgap9",   "d,s,t",  	MATCH_DIV, 				MASK_DIV, 	match_opcode,  0},
+{"p.divu",     		"Xgap9",   "d,s,t",  	MATCH_DIVU, 				MASK_DIVU, 	match_opcode,  0},
+{"p.rem",      		"Xgap9",   "d,s,t",  	MATCH_REM, 				MASK_REM, 	match_opcode,  0},
+{"p.remu",     		"Xgap9",   "d,s,t",  	MATCH_REMU,				MASK_REMU, 	match_opcode,  0},
+
+/* 32x32 into 32 Mac/Msu */
+
+{"p.mac",		"Xgap9", "d,s,t",  	MATCH_MAC32, 				MASK_MACMSU32, 	match_opcode,  	0},
+{"p.msu",		"Xgap9", "d,s,t",  	MATCH_MSU32, 				MASK_MACMSU32, 	match_opcode,  	0},
+
+/*  16x16 into 32 Mult/Mac with optional norm and rounding */
+
+{"p.muls",		"Xgap9", "d,s,t",  	MATCH_MULS, 				MASK_MACMUL, 	match_opcode,  	0},
+{"p.mulhhs",		"Xgap9", "d,s,t",  	MATCH_MULHHS, 				MASK_MACMUL, 	match_opcode,  	0},
+{"p.mulu",		"Xgap9", "d,s,t",  	MATCH_MULU, 				MASK_MACMUL, 	match_opcode,  	0},
+{"p.mulhhu",		"Xgap9", "d,s,t",  	MATCH_MULHHU, 				MASK_MACMUL, 	match_opcode,  	0},
+
+{"p.macs",		"Xgap9", "d,s,t",  	MATCH_MACS, 				MASK_MACMUL, 	match_opcode,  	0},
+{"p.machhs",		"Xgap9", "d,s,t",  	MATCH_MACHHS, 				MASK_MACMUL, 	match_opcode,  	0},
+{"p.macu",		"Xgap9", "d,s,t",  	MATCH_MACU, 				MASK_MACMUL, 	match_opcode,  	0},
+{"p.machhu",		"Xgap9", "d,s,t",  	MATCH_MACHHU, 				MASK_MACMUL, 	match_opcode,  	0},
+
+{"p.mulsn",		"Xgap9", "d,s,t,b5", 	MATCH_MULSN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.mulhhsn",		"Xgap9", "d,s,t,b5", 	MATCH_MULHHSN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.mulsrn",		"Xgap9", "d,s,t,b5", 	MATCH_MULSRN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.mulhhsrn",		"Xgap9", "d,s,t,b5", 	MATCH_MULHHSRN,				MASK_MACMULNR, 	match_opcode,  	0},
+
+{"p.mulun",		"Xgap9", "d,s,t,b5", 	MATCH_MULUN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.mulhhun",		"Xgap9", "d,s,t,b5", 	MATCH_MULHHUN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.mulurn",		"Xgap9", "d,s,t,b5", 	MATCH_MULURN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.mulhhurn",		"Xgap9", "d,s,t,b5", 	MATCH_MULHHURN,				MASK_MACMULNR, 	match_opcode,  	0},
+
+{"p.macsn",		"Xgap9", "d,s,t,b5", 	MATCH_MACSN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.machhsn",		"Xgap9", "d,s,t,b5", 	MATCH_MACHHSN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.macsrn",		"Xgap9", "d,s,t,b5", 	MATCH_MACSRN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.machhsrn",		"Xgap9", "d,s,t,b5", 	MATCH_MACHHSRN,				MASK_MACMULNR, 	match_opcode,  	0},
+
+{"p.macun",		"Xgap9", "d,s,t,b5", 	MATCH_MACUN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.machhun",		"Xgap9", "d,s,t,b5", 	MATCH_MACHHUN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.macurn",		"Xgap9", "d,s,t,b5", 	MATCH_MACURN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.machhurn",		"Xgap9", "d,s,t,b5", 	MATCH_MACHHURN,				MASK_MACMULNR, 	match_opcode,  	0},
+
+/*  Add/Sub with norm and rounding */
+
+{"p.addn",		"Xgap9", "d,s,t,b5", 	MATCH_ADDN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.addni",		"Xgap9", "d,s,t,b5", 	MATCH_ADDN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.addnr",		"Xgap9", "d,s,t", 	MATCH_ADDNR, 				MASK_PALU, 	match_opcode,  	0},
+{"p.addun",		"Xgap9", "d,s,t,b5", 	MATCH_ADDUN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.adduni",		"Xgap9", "d,s,t,b5", 	MATCH_ADDUN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.addunr",		"Xgap9", "d,s,t", 	MATCH_ADDUNR, 				MASK_PALU, 	match_opcode,  	0},
+{"p.addrn",		"Xgap9", "d,s,t,b5", 	MATCH_ADDRN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.addrni",		"Xgap9", "d,s,t,b5", 	MATCH_ADDRN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.addrnr",		"Xgap9", "d,s,t", 	MATCH_ADDRNR, 				MASK_PALU, 	match_opcode,  	0},
+{"p.addurn",		"Xgap9", "d,s,t,b5", 	MATCH_ADDURN,				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.addurni",		"Xgap9", "d,s,t,b5", 	MATCH_ADDURN,				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.addurnr",		"Xgap9", "d,s,t", 	MATCH_ADDURNR,				MASK_PALU, 	match_opcode,  	0},
+
+{"p.subn",		"Xgap9", "d,s,t,b5", 	MATCH_SUBN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.subni",		"Xgap9", "d,s,t,b5", 	MATCH_SUBN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.subnr",		"Xgap9", "d,s,t", 	MATCH_SUBNR, 				MASK_PALU, 	match_opcode,  	0},
+{"p.subun",		"Xgap9", "d,s,t,b5", 	MATCH_SUBUN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.subuni",		"Xgap9", "d,s,t,b5", 	MATCH_SUBUN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.subunr",		"Xgap9", "d,s,t", 	MATCH_SUBUNR, 				MASK_PALU, 	match_opcode,  	0},
+{"p.subrn",		"Xgap9", "d,s,t,b5", 	MATCH_SUBRN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.subrni",		"Xgap9", "d,s,t,b5", 	MATCH_SUBRN, 				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.subrnr",		"Xgap9", "d,s,t", 	MATCH_SUBRNR, 				MASK_PALU, 	match_opcode,  	0},
+{"p.suburn",		"Xgap9", "d,s,t,b5", 	MATCH_SUBURN,				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.suburni",		"Xgap9", "d,s,t,b5", 	MATCH_SUBURN,				MASK_MACMULNR, 	match_opcode,  	0},
+{"p.suburnr",		"Xgap9", "d,s,t", 	MATCH_SUBURNR,				MASK_PALU, 	match_opcode,  	0},
+
+/* Vector Operations */
+
+{"pv.add.h",		"Xgap9", "d,s,t",	MATCH_V_OP_ADD|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.add.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_ADD|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.add.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_ADD|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.add.b",		"Xgap9", "d,s,t",	MATCH_V_OP_ADD|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.add.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_ADD|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.add.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_ADD|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.sub.h",		"Xgap9", "d,s,t",	MATCH_V_OP_SUB|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.sub.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_SUB|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.sub.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_SUB|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.sub.b",		"Xgap9", "d,s,t",	MATCH_V_OP_SUB|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.sub.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_SUB|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.sub.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_SUB|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.avg.h",		"Xgap9", "d,s,t",	MATCH_V_OP_AVG|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.avg.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_AVG|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.avg.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_AVG|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.avg.b",		"Xgap9", "d,s,t",	MATCH_V_OP_AVG|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.avg.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_AVG|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.avg.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_AVG|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.avgu.h",		"Xgap9", "d,s,t",	MATCH_V_OP_AVGU|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.avgu.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_AVGU|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.avgu.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_AVGU|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.avgu.b",		"Xgap9", "d,s,t",	MATCH_V_OP_AVGU|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.avgu.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_AVGU|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.avgu.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_AVGU|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.min.h",		"Xgap9", "d,s,t",	MATCH_V_OP_MIN|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.min.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_MIN|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.min.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_MIN|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.min.b",		"Xgap9", "d,s,t",	MATCH_V_OP_MIN|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.min.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_MIN|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.min.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_MIN|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.minu.h",		"Xgap9", "d,s,t",	MATCH_V_OP_MINU|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.minu.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_MINU|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.minu.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_MINU|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.minu.b",		"Xgap9", "d,s,t",	MATCH_V_OP_MINU|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.minu.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_MINU|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.minu.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_MINU|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.max.h",		"Xgap9", "d,s,t",	MATCH_V_OP_MAX|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.max.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_MAX|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.max.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_MAX|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.max.b",		"Xgap9", "d,s,t",	MATCH_V_OP_MAX|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.max.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_MAX|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.max.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_MAX|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.maxu.h",		"Xgap9", "d,s,t",	MATCH_V_OP_MAXU|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.maxu.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_MAXU|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.maxu.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_MAXU|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.maxu.b",		"Xgap9", "d,s,t",	MATCH_V_OP_MAXU|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.maxu.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_MAXU|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.maxu.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_MAXU|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.srl.h",		"Xgap9", "d,s,t",	MATCH_V_OP_SRL|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.srl.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_SRL|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.srl.sci.h",	"Xgap9", "d,s,bU",	MATCH_V_OP_SRL|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.srl.b",		"Xgap9", "d,s,t",	MATCH_V_OP_SRL|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.srl.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_SRL|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.srl.sci.b",	"Xgap9", "d,s,bU",	MATCH_V_OP_SRL|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.sra.h",		"Xgap9", "d,s,t",	MATCH_V_OP_SRA|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.sra.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_SRA|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.sra.sci.h",	"Xgap9", "d,s,bU",	MATCH_V_OP_SRA|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.sra.b",		"Xgap9", "d,s,t",	MATCH_V_OP_SRA|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.sra.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_SRA|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.sra.sci.b",	"Xgap9", "d,s,bU",	MATCH_V_OP_SRA|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.sll.h",		"Xgap9", "d,s,t",	MATCH_V_OP_SLL|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.sll.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_SLL|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.sll.sci.h",	"Xgap9", "d,s,bU",	MATCH_V_OP_SLL|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.sll.b",		"Xgap9", "d,s,t",	MATCH_V_OP_SLL|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.sll.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_SLL|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.sll.sci.b",	"Xgap9", "d,s,bU",	MATCH_V_OP_SLL|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.or.h",		"Xgap9", "d,s,t",	MATCH_V_OP_OR|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.or.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_OR|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.or.sci.h",		"Xgap9", "d,s,bs",	MATCH_V_OP_OR|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.or.b",		"Xgap9", "d,s,t",	MATCH_V_OP_OR|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.or.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_OR|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.or.sci.b",		"Xgap9", "d,s,bs",	MATCH_V_OP_OR|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.xor.h",		"Xgap9", "d,s,t",	MATCH_V_OP_XOR|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.xor.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_XOR|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.xor.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_XOR|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.xor.b",		"Xgap9", "d,s,t",	MATCH_V_OP_XOR|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.xor.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_XOR|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.xor.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_XOR|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.and.h",		"Xgap9", "d,s,t",	MATCH_V_OP_AND|MATCH_V_OP_H_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.and.sc.h",		"Xgap9", "d,s,t",	MATCH_V_OP_AND|MATCH_V_OP_H_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.and.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_AND|MATCH_V_OP_H_VI,		MASK_V_OP1,	match_opcode,	0},
+{"pv.and.b",		"Xgap9", "d,s,t",	MATCH_V_OP_AND|MATCH_V_OP_B_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.and.sc.b",		"Xgap9", "d,s,t",	MATCH_V_OP_AND|MATCH_V_OP_B_VR,		MASK_V_OP,	match_opcode,	0},
+{"pv.and.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_AND|MATCH_V_OP_B_VI,		MASK_V_OP1,	match_opcode,	0},
+
+{"pv.abs.h",		"Xgap9", "d,s",	MATCH_V_OP_ABS|MATCH_V_OP_H_VV,		MASK_V_OP2,	match_opcode,	0},
+{"pv.abs.b",		"Xgap9", "d,s",	MATCH_V_OP_ABS|MATCH_V_OP_B_VV,		MASK_V_OP2,	match_opcode,	0},
+
+{"pv.extract.h",	"Xgap9", "d,s,bf",	MATCH_V_OP_EXTRACT|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.extract.b",	"Xgap9", "d,s,bF",	MATCH_V_OP_EXTRACT|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.extractu.h",	"Xgap9", "d,s,bf",	MATCH_V_OP_DOTSP|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.extractu.b",	"Xgap9", "d,s,bF",	MATCH_V_OP_DOTSP|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.insert.h",		"Xgap9", "d,s,bf",	MATCH_V_OP_SDOTUP|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.insert.b",		"Xgap9", "d,s,bF",	MATCH_V_OP_SDOTUP|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.dotsp.h",		"Xgap9", "d,s,t",	MATCH_V_OP_DOTUP|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotsp.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_DOTUP|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotsp.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_DOTUP|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.dotsp.b",		"Xgap9", "d,s,t",	MATCH_V_OP_DOTUP|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotsp.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_DOTUP|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotsp.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_DOTUP|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.dotup.h",		"Xgap9", "d,s,t",	MATCH_V_OP_EXTRACTU|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotup.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_EXTRACTU|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotup.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_EXTRACTU|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.dotup.b",		"Xgap9", "d,s,t",	MATCH_V_OP_EXTRACTU|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotup.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_EXTRACTU|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotup.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_EXTRACTU|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.dotusp.h",		"Xgap9", "d,s,t",	MATCH_V_OP_INSERT|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotusp.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_INSERT|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotusp.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_INSERT|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.dotusp.b",		"Xgap9", "d,s,t",	MATCH_V_OP_INSERT|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotusp.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_INSERT|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.dotusp.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_INSERT|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.sdotsp.h",		"Xgap9", "d,s,t",	MATCH_V_OP_SDOTUSP|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotsp.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_SDOTUSP|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotsp.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_SDOTUSP|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.sdotsp.b",		"Xgap9", "d,s,t",	MATCH_V_OP_SDOTUSP|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotsp.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_SDOTUSP|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotsp.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_SDOTUSP|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.sdotup.h",		"Xgap9", "d,s,t",	MATCH_V_OP_DOTUSP|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotup.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_DOTUSP|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotup.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_DOTUSP|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.sdotup.b",		"Xgap9", "d,s,t",	MATCH_V_OP_DOTUSP|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotup.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_DOTUSP|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotup.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_DOTUSP|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.sdotusp.h",	"Xgap9", "d,s,t",	MATCH_V_OP_SDOTSP|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotusp.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_SDOTSP|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotusp.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_SDOTSP|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.sdotusp.b",	"Xgap9", "d,s,t",	MATCH_V_OP_SDOTSP|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotusp.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_SDOTSP|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.sdotusp.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_SDOTSP|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.shuffle.h",	"Xgap9", "d,s,t",	MATCH_V_OP_SHUFFLE|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.shuffle.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_SHUFFLE|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.shuffle.b",	"Xgap9", "d,s,t",	MATCH_V_OP_SHUFFLE|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.shufflei0.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_SHUFFLE|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.shufflei1.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_SHUFFLEI1|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.shufflei2.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_SHUFFLEI2|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.shufflei3.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_SHUFFLEI3|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.shuffle2.h",	"Xgap9", "d,s,t",	MATCH_V_OP_SHUFFLE2|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.shuffle2.b",	"Xgap9", "d,s,t",	MATCH_V_OP_SHUFFLE2|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+
+{"pv.pack.h",		"Xgap9", "d,s,t",	MATCH_V_OP_PACK|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+
+{"pv.packhi.b",		"Xgap9", "d,s,t",	MATCH_V_OP_PACKHI|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.packlo.b",		"Xgap9", "d,s,t",	MATCH_V_OP_PACKLO|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+
+{"pv.cmpeq.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPEQ|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpeq.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPEQ|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpeq.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPEQ|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmpeq.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPEQ|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpeq.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPEQ|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpeq.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPEQ|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.cmpne.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPNE|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpne.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPNE|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpne.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPNE|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmpne.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPNE|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpne.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPNE|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpne.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPNE|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.cmpgt.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPGT|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgt.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPGT|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgt.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPGT|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmpgt.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPGT|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgt.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPGT|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgt.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPGT|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.cmpge.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPGE|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpge.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPGE|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpge.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPGE|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmpge.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPGE|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpge.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPGE|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpge.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPGE|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.cmplt.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPLT|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmplt.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPLT|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmplt.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPLT|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmplt.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPLT|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmplt.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPLT|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmplt.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPLT|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.cmple.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPLE|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmple.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPLE|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmple.sci.h",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPLE|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmple.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPLE|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmple.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPLE|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmple.sci.b",	"Xgap9", "d,s,bs",	MATCH_V_OP_CMPLE|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.cmpgtu.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPGTU|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgtu.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPGTU|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgtu.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_CMPGTU|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmpgtu.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPGTU|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgtu.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPGTU|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgtu.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_CMPGTU|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.cmpgeu.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPGEU|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgeu.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPGEU|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgeu.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_CMPGEU|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmpgeu.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPGEU|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgeu.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPGEU|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpgeu.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_CMPGEU|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.cmpltu.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPLTU|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpltu.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPLTU|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpltu.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_CMPLTU|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmpltu.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPLTU|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpltu.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPLTU|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpltu.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_CMPLTU|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+
+{"pv.cmpleu.h",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPLEU|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpleu.sc.h",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPLEU|MATCH_V_OP_H_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpleu.sci.h",	"Xgap9", "d,s,bu",	MATCH_V_OP_CMPLEU|MATCH_V_OP_H_VI,	MASK_V_OP1,	match_opcode,	0},
+{"pv.cmpleu.b",		"Xgap9", "d,s,t",	MATCH_V_OP_CMPLEU|MATCH_V_OP_B_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpleu.sc.b",	"Xgap9", "d,s,t",	MATCH_V_OP_CMPLEU|MATCH_V_OP_B_VR,	MASK_V_OP,	match_opcode,	0},
+{"pv.cmpleu.sci.b",	"Xgap9", "d,s,bu",	MATCH_V_OP_CMPLEU|MATCH_V_OP_B_VI,	MASK_V_OP1,	match_opcode,	0},
+/*
+{"pv.ball",       	"Xgap9",  "s,p",  	MATCH_BEQM1, 			MASK_BEQM1|MASK_RS2, 	match_opcode,   },
+{"pv.bnall",       	"Xgap9",  "s,p",  	MATCH_BNEM1, 			MASK_BNEM1|MASK_RS2, 	match_opcode,   },
+*/
+{"p.beqimm",       	"Xgap9",  "s,bI,p",  	MATCH_BEQM1, 				MASK_BEQM1, 	match_opcode,    0},
+{"p.bneimm",       	"Xgap9",  "s,bI,p",  	MATCH_BNEM1, 				MASK_BNEM1, 	match_opcode,    0},
+
+/* Load from event unit */
+
+{"p.elw",		"Xgap9", "d,o(s)",	MATCH_LWU, 				MASK_LWU, 	match_opcode,   0},
+
+
+
+/* Single-precision floating-point instruction subset  when float registers are mapped on the int reg file */
+
+/* Riscv F with floats mapped on to integer register file */
+{"frsr",      "Xgap9",   "d",  		MATCH_FRCSR, 			MASK_FRCSR, 		match_opcode, 0 },
+{"fssr",      "Xgap9",   "s",  		MATCH_FSCSR, 			MASK_FSCSR | MASK_RD, 	match_opcode, 0 },
+{"fssr",      "Xgap9",   "d,s",  	MATCH_FSCSR, 			MASK_FSCSR, 		match_opcode, 0 },
+{"frcsr",     "Xgap9",   "d",  		MATCH_FRCSR, 			MASK_FRCSR, 		match_opcode, 0 },
+{"fscsr",     "Xgap9",   "s",  		MATCH_FSCSR, 			MASK_FSCSR | MASK_RD, 	match_opcode, 0 },
+{"fscsr",     "Xgap9",   "d,s",  	MATCH_FSCSR, 			MASK_FSCSR, 		match_opcode, 0 },
+{"frrm",      "Xgap9",   "d",  		MATCH_FRRM, 			MASK_FRRM, 		match_opcode, 0 },
+{"fsrm",      "Xgap9",   "s",  		MATCH_FSRM, 			MASK_FSRM | MASK_RD, 	match_opcode, 0 },
+{"fsrm",      "Xgap9",   "d,s",  	MATCH_FSRM, 			MASK_FSRM, 		match_opcode, 0 },
+{"frflags",   "Xgap9",   "d",  		MATCH_FRFLAGS, 			MASK_FRFLAGS, 		match_opcode, 0 },
+{"fsflags",   "Xgap9",   "s",  		MATCH_FSFLAGS, 			MASK_FSFLAGS | MASK_RD, match_opcode, 0 },
+{"fsflags",   "Xgap9",   "d,s",  	MATCH_FSFLAGS, 			MASK_FSFLAGS, 		match_opcode, 0 },
+
+/* Unused since we map float to int register file
+{"flw",       "32C", "D,Cm(Cc)",  MATCH_C_FLWSP, MASK_C_FLWSP, match_opcode, INSN_ALIAS },
+{"flw",       "32C", "CD,Ck(Cs)",  MATCH_C_FLW, MASK_C_FLW, match_opcode, INSN_ALIAS },
+{"flw",       "F",   "D,o(s)",  MATCH_FLW, MASK_FLW, match_opcode, 0 },
+{"flw",       "F",   "D,A,s",  0, (int) M_FLW, match_never, INSN_MACRO },
+{"fsw",       "32C", "CT,CM(Cc)",  MATCH_C_FSWSP, MASK_C_FSWSP, match_opcode, INSN_ALIAS },
+{"fsw",       "32C", "CD,Ck(Cs)",  MATCH_C_FSW, MASK_C_FSW, match_opcode, INSN_ALIAS },
+{"fsw",       "F",   "T,q(s)",  MATCH_FSW, MASK_FSW, match_opcode, 0 },
+{"fsw",       "F",   "T,A,s",  0, (int) M_FSW, match_never, INSN_MACRO },
+{"fmv.x.s",   "F",   "d,S",  MATCH_FMV_X_S, MASK_FMV_X_S, match_opcode, 0 },
+{"fmv.s.x",   "F",   "D,s",  MATCH_FMV_S_X, MASK_FMV_S_X, match_opcode, 0 },
+{"fmv.s",     "F",   "D,U",  MATCH_FSGNJ_S, MASK_FSGNJ_S, match_rs1_eq_rs2, INSN_ALIAS },
+*/
+
+{"fneg.s",    "Xgap9",   "d,w",  	MATCH_FSGNJN_S, 		MASK_FSGNJN_S, 		match_rs1_eq_rs2, INSN_ALIAS },
+{"fabs.s",    "Xgap9",   "d,w",  	MATCH_FSGNJX_S, 		MASK_FSGNJX_S, 		match_rs1_eq_rs2, INSN_ALIAS },
+{"fsgnj.s",   "Xgap9",   "d,s,t",  	MATCH_FSGNJ_S, 			MASK_FSGNJ_S, 		match_opcode, 0 },
+{"fsgnjn.s",  "Xgap9",   "d,s,t",  	MATCH_FSGNJN_S, 		MASK_FSGNJN_S, 		match_opcode, 0 },
+{"fsgnjx.s",  "Xgap9",   "d,s,t",  	MATCH_FSGNJX_S, 		MASK_FSGNJX_S, 		match_opcode, 0 },
+{"fadd.s",    "Xgap9",   "d,s,t",  	MATCH_FADD_S | MASK_RM, 	MASK_FADD_S | MASK_RM, 	match_opcode, 0 },
+{"fadd.s",    "Xgap9",   "d,s,t,m",  	MATCH_FADD_S, 			MASK_FADD_S, 		match_opcode, 0 },
+{"fsub.s",    "Xgap9",   "d,s,t",  	MATCH_FSUB_S | MASK_RM, 	MASK_FSUB_S | MASK_RM, 	match_opcode, 0 },
+{"fsub.s",    "Xgap9",   "d,s,t,m",  	MATCH_FSUB_S, 			MASK_FSUB_S, 		match_opcode, 0 },
+{"fmul.s",    "Xgap9",   "d,s,t",  	MATCH_FMUL_S | MASK_RM, 	MASK_FMUL_S | MASK_RM, 	match_opcode, 0 },
+{"fmul.s",    "Xgap9",   "d,s,t,m",  	MATCH_FMUL_S, 			MASK_FMUL_S, 		match_opcode, 0 },
+{"fdiv.s",    "Xgap9",   "d,s,t",  	MATCH_FDIV_S | MASK_RM, 	MASK_FDIV_S | MASK_RM, 	match_opcode, 0 },
+{"fdiv.s",    "Xgap9",   "d,s,t,m",  	MATCH_FDIV_S, 			MASK_FDIV_S, 		match_opcode, 0 },
+{"fsqrt.s",   "Xgap9",   "d,s",  	MATCH_FSQRT_S | MASK_RM, 	MASK_FSQRT_S | MASK_RM, match_opcode, 0 },
+{"fsqrt.s",   "Xgap9",   "d,s,m",  	MATCH_FSQRT_S, 			MASK_FSQRT_S, 		match_opcode, 0 },
+{"fmin.s",    "Xgap9",   "d,s,t",  	MATCH_FMIN_S, 			MASK_FMIN_S, 		match_opcode, 0 },
+{"fmax.s",    "Xgap9",   "d,s,t",  	MATCH_FMAX_S, 			MASK_FMAX_S, 		match_opcode, 0 },
+{"fmadd.s",   "Xgap9",   "d,s,t,e",  	MATCH_FMADD_S | MASK_RM, 	MASK_FMADD_S | MASK_RM, match_opcode, 0 },
+{"fmadd.s",   "Xgap9",   "d,s,t,e,m",  	MATCH_FMADD_S, 			MASK_FMADD_S, 		match_opcode, 0 },
+{"fnmadd.s",  "Xgap9",   "d,s,t,e",  	MATCH_FNMADD_S | MASK_RM, 	MASK_FNMADD_S| MASK_RM, match_opcode, 0 },
+{"fnmadd.s",  "Xgap9",   "d,s,t,e,m",  	MATCH_FNMADD_S,			MASK_FNMADD_S, 		match_opcode, 0 },
+{"fmsub.s",   "Xgap9",   "d,s,t,e",  	MATCH_FMSUB_S | MASK_RM, 	MASK_FMSUB_S | MASK_RM, match_opcode, 0 },
+{"fmsub.s",   "Xgap9",   "d,s,t,e,m",  	MATCH_FMSUB_S, 			MASK_FMSUB_S, 		match_opcode, 0 },
+{"fnmsub.s",  "Xgap9",   "d,s,t,e",  	MATCH_FNMSUB_S | MASK_RM, 	MASK_FNMSUB_S| MASK_RM, match_opcode, 0 },
+{"fnmsub.s",  "Xgap9",   "d,s,t,e,m",  	MATCH_FNMSUB_S, 		MASK_FNMSUB_S, 		match_opcode, 0 },
+{"fcvt.w.s",  "Xgap9",   "d,s",  	MATCH_FCVT_W_S | MASK_RM, 	MASK_FCVT_W_S| MASK_RM, match_opcode, 0 },
+{"fcvt.w.s",  "Xgap9",   "d,s,m",  	MATCH_FCVT_W_S, 		MASK_FCVT_W_S, 		match_opcode, 0 },
+{"fcvt.wu.s", "Xgap9",   "d,s",  	MATCH_FCVT_WU_S | MASK_RM, 	MASK_FCVT_WU_S|MASK_RM, match_opcode, 0 },
+{"fcvt.wu.s", "Xgap9",   "d,s,m",  	MATCH_FCVT_WU_S, 		MASK_FCVT_WU_S, 	match_opcode, 0 },
+{"fcvt.s.w",  "Xgap9",   "d,s",  	MATCH_FCVT_S_W | MASK_RM, 	MASK_FCVT_S_W| MASK_RM,	match_opcode, 0 },
+{"fcvt.s.w",  "Xgap9",   "d,s,m",  	MATCH_FCVT_S_W, 		MASK_FCVT_S_W,	 	match_opcode, 0 },
+{"fcvt.s.wu", "Xgap9",   "d,s",  	MATCH_FCVT_S_WU | MASK_RM, 	MASK_FCVT_S_W| MASK_RM, match_opcode, 0 },
+{"fcvt.s.wu", "Xgap9",   "d,s,m",  	MATCH_FCVT_S_WU, 		MASK_FCVT_S_WU,		match_opcode, 0 },
+{"fclass.s",  "Xgap9",   "d,s",  	MATCH_FCLASS_S, 		MASK_FCLASS_S, 		match_opcode, 0 },
+{"feq.s",     "Xgap9",   "d,s,t",    	MATCH_FEQ_S, 			MASK_FEQ_S, 		match_opcode, 0 },
+{"flt.s",     "Xgap9",   "d,s,t",    	MATCH_FLT_S, 			MASK_FLT_S, 		match_opcode, 0 },
+{"fle.s",     "Xgap9",   "d,s,t",    	MATCH_FLE_S, 			MASK_FLE_S, 		match_opcode, 0 },
+{"fgt.s",     "Xgap9",   "d,t,s",    	MATCH_FLT_S, 			MASK_FLT_S, 		match_opcode, 0 },
+{"fge.s",     "Xgap9",   "d,t,s",    	MATCH_FLE_S, 			MASK_FLE_S, 		match_opcode, 0 },
+
+/* Gap9 FP16 ALT,  Riscv F based but on fp16alt */
+
+{"fmadd.ah",   "Xgap9",  "d,s,t,e",  	MATCH_FMADD_AH, 		MASK_FMADD_AH, 		match_opcode, 0 },
+{"fmsub.ah",   "Xgap9",  "d,s,t,e",  	MATCH_FMSUB_AH, 		MASK_FMSUB_AH, 		match_opcode, 0 },
+{"fnmsub.ah",  "Xgap9",  "d,s,t,e",  	MATCH_FNMSUB_AH,		MASK_FNMSUB_AH, 	match_opcode, 0 },
+{"fnmadd.ah",  "Xgap9",  "d,s,t,e",  	MATCH_FNMADD_AH, 		MASK_FNMADD_AH, 	match_opcode, 0 },
+{"fadd.ah",    "Xgap9",  "d,s,t",  	MATCH_FADD_AH, 			MASK_FADD_AH, 		match_opcode, 0 },
+{"fsub.ah",    "Xgap9",  "d,s,t",  	MATCH_FSUB_AH, 			MASK_FSUB_AH, 		match_opcode, 0 },
+{"fmul.ah",    "Xgap9",  "d,s,t",  	MATCH_FMUL_AH, 			MASK_FMUL_AH, 		match_opcode, 0 },
+{"fdiv.ah",    "Xgap9",  "d,s,t",  	MATCH_FDIV_AH, 			MASK_FDIV_AH, 		match_opcode, 0 },
+{"fsqrt.ah",   "Xgap9",  "d,s",  	MATCH_FSQRT_AH, 		MASK_FSQRT_AH, 		match_opcode, 0 },
+{"fsgnj.ah",   "Xgap9",  "d,s,t",  	MATCH_FSGNJ_AH, 		MASK_FSGNJ_AH, 		match_opcode, 0 },
+{"fsgnjn.ah",  "Xgap9",  "d,s,t",  	MATCH_FSGNJN_AH, 		MASK_FSGNJN_AH, 	match_opcode, 0 },
+{"fsgnjx.ah",  "Xgap9",  "d,s,t",  	MATCH_FSGNJX_AH, 		MASK_FSGNJX_AH, 	match_opcode, 0 },
+{"fmin.ah",    "Xgap9",  "d,s,t",  	MATCH_FMIN_AH, 			MASK_FMIN_AH, 		match_opcode, 0 },
+{"fmax.ah",    "Xgap9",  "d,s,t",  	MATCH_FMAX_AH, 			MASK_FMAX_AH, 		match_opcode, 0 },
+{"feq.ah",     "Xgap9",  "d,s,t",    	MATCH_FEQ_AH, 			MASK_FEQ_AH, 		match_opcode, 0 },
+{"flt.ah",     "Xgap9",  "d,s,t",    	MATCH_FLT_AH, 			MASK_FLT_AH, 		match_opcode, 0 },
+{"fle.ah",     "Xgap9",  "d,s,t",    	MATCH_FLE_AH, 			MASK_FLE_AH, 		match_opcode, 0 },
+{"fcvt.w.ah",  "Xgap9",  "d,s",  	MATCH_FCVT_W_AH, 		MASK_FCVT_W_AH, 	match_opcode, 0 },
+{"fcvt.wu.ah", "Xgap9",  "d,s",  	MATCH_FCVT_WU_AH, 		MASK_FCVT_WU_AH, 	match_opcode, 0 },
+{"fcvt.ah.w",  "Xgap9",  "d,s",  	MATCH_FCVT_AH_W, 		MASK_FCVT_AH_W, 	match_opcode, 0 },
+{"fcvt.ah.wu", "Xgap9",  "d,s",  	MATCH_FCVT_AH_WU, 		MASK_FCVT_AH_W, 	match_opcode, 0 },
+{"fcvt.s.ah",  "Xgap9",  "d,s",  	MATCH_FCVT_S_AH, 		MASK_FCVT_S_AH, 	match_opcode, 0 },
+{"fcvt.ah.s",  "Xgap9",  "d,s",  	MATCH_FCVT_AH_S, 		MASK_FCVT_AH_S, 	match_opcode, 0 },
+
+{"fclass.ah",  "Xgap9",  "d,s",  	MATCH_FCLASS_AH, 		MASK_FCLASS_AH, 	match_opcode, 0 },
+// pseudos
+{"fgt.ah",     "Xgap9",  "d,t,s",    	MATCH_FLT_AH, 			MASK_FLT_AH, 		match_opcode, 0 },
+{"fge.ah",     "Xgap9",  "d,t,s",    	MATCH_FLE_AH, 			MASK_FLE_AH, 		match_opcode, 0 },
+{"fmv.ah",     "Xgap9",  "d,w",  	MATCH_FSGNJ_AH, 		MASK_FSGNJ_AH, 		match_rs1_eq_rs2, INSN_ALIAS },
+{"fabs.ah",    "Xgap9",  "d,w",  	MATCH_FSGNJX_AH, 		MASK_FSGNJX_AH, 	match_rs1_eq_rs2, INSN_ALIAS },
+{"fneg.ah",    "Xgap9",  "d,w",  	MATCH_FSGNJN_AH, 		MASK_FSGNJN_AH, 	match_rs1_eq_rs2, INSN_ALIAS },
+
+/* Gap9 FP16 ALT,  Fp16Alt, Fp16Alt => Fp32 */
+
+{"fmulex.s.ah", "Xgap9", "d,s,t", 	MATCH_FMULEX_S_AH, 		MASK_FMULEX_S_AH, 	match_opcode, 0},
+{"fmacex.s.ah", "Xgap9", "d,s,t", 	MATCH_FMACEX_S_AH, 		MASK_FMACEX_S_AH, 	match_opcode, 0},
+
+
+/***********************************************************************************************************************/
+/**************************************     End of Gap9              ***************************************************/
+/***********************************************************************************************************************/
+
+
+
 /* Terminate the list.  */
 {0, 0, 0, 0, 0, 0, 0}
 };
