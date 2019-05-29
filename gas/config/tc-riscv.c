@@ -234,6 +234,10 @@ riscv_set_arch (const char *s)
                         if (Pulp_Chip.processor == PULP_NONE || Pulp_Chip.processor == PULP_V3) Pulp_Chip.processor = PULP_V3;
                         else as_fatal("-Xpulpv3: pulp architecture is already defined as %s", PulpProcessorImage(Pulp_Chip.processor));
                         break;
+		case PULP_NN:
+                        if (Pulp_Chip.processor == PULP_NONE || Pulp_Chip.processor == PULP_NN) Pulp_Chip.processor = PULP_NN;
+                        else as_fatal("-Xpulpnn: pulp architecture is already defined as %s", PulpProcessorImage(Pulp_Chip.processor));
+                        break;
 /* __GAP8 Start */
                 case PULP_GAP8:
                         if (Pulp_Chip.processor == PULP_NONE || Pulp_Chip.processor == PULP_GAP8) Pulp_Chip.processor = PULP_GAP8;

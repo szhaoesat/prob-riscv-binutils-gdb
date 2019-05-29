@@ -2196,7 +2196,7 @@ const struct riscv_opcode riscv_opcodes[] =
 /* Vector instructions */
 
 /* Xpulpnn vectorial add: nibble, crumb */
-{"pv.add.n",		"Xpulpv2", "d,s,t",	MATCH_V_OP_ADD|MATCH_V_OP_N_VV,		MASK_V_OP,	match_opcode,	0},
+{"pv.add.n",		"Xpulpnn", "d,s,t",	MATCH_V_OP_ADD|MATCH_V_OP_N_VV,		MASK_V_OP,	match_opcode,	0},
 {"pv.add.sc.n",		"Xpulpnn", "d,s,t",	MATCH_V_OP_ADD|MATCH_V_OP_N_VR,		MASK_V_OP,	match_opcode,	0},
 {"pv.add.c",		"Xpulpnn", "d,s,t",	MATCH_V_OP_ADD|MATCH_V_OP_C_VV,		MASK_V_OP,	match_opcode,	0},
 {"pv.add.sc.c",		"Xpulpnn", "d,s,t",	MATCH_V_OP_ADD|MATCH_V_OP_C_VR,		MASK_V_OP,	match_opcode,	0},
