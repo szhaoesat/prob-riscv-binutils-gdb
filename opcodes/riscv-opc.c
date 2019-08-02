@@ -2729,6 +2729,10 @@ const struct riscv_opcode riscv_opcodes[] =
 {"pv.sdotsp.c",		"Xpulpnn", "d,s,t",	MATCH_V_OP_SDOTUSP|MATCH_V_OP_C_VV,	MASK_V_OP,	match_opcode,	0},
 {"pv.sdotsp.sc.c",	"Xpulpnn", "d,s,t",	MATCH_V_OP_SDOTUSP|MATCH_V_OP_C_VR,	MASK_V_OP,	match_opcode,	0},
 
+/* Xpulpnn quantization: nibble, crumble */
+{"pv.qnt.n",		"Xpulpnn", "d,s,t",	MATCH_V_OP_PACKLO|MATCH_V_OP_N_VV,	MASK_V_OP,	match_opcode,	0},
+{"pv.qnt.c",		"Xpulpnn", "d,s,t",	MATCH_V_OP_PACKLO|MATCH_V_OP_C_VV,	MASK_V_OP,	match_opcode,	0},
+
 /* To be integrated for nibble&crumb somhow -- needed more encoding space -- talk to Giuseppe about it
 
 {"pv.shuffle.h",	"Xpulpv3", "d,s,t",	MATCH_V_OP_SHUFFLE|MATCH_V_OP_H_VV,	MASK_V_OP,	match_opcode,	0},
