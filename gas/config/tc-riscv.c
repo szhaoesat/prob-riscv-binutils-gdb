@@ -251,6 +251,7 @@ riscv_set_arch (const char *s)
                 case PULP_GAP9:
                         if (Pulp_Chip.processor == PULP_NONE || Pulp_Chip.processor == PULP_GAP9) Pulp_Chip.processor = PULP_GAP9;
                         else as_fatal("-Xgap9: pulp architecture is already defined as %s", PulpProcessorImage(Pulp_Chip.processor));
+			strcpy(subset, "XGAP9");
                         break;
                 case PULP_NONE:
                         if (Len==0) {
@@ -263,13 +264,12 @@ riscv_set_arch (const char *s)
 
         }
 
-
 	  extension = subset;
 	  riscv_add_subset (subset);
 	  p += strlen (subset);
 	  free (subset);
 	}
-      else if (*p == '_')
+      else if (*p == '_' || *p == '0')
 	p++;
       else if ((all_subsets = strchr (all_subsets, *p)) != NULL)
 	{
@@ -292,9 +292,9 @@ static void pulp_set_chip(const char *arg)
   char *uppercase = xstrdup (arg);
   char *p = uppercase;
   int i;
+as_fatal ("#### unsupported pulp chip %s", p);
 
   for (i = 0; uppercase[i]; i++) uppercase[i] = TOUPPER (uppercase[i]);
-
   if (strncmp (p, "PULPINO", 7) == 0) {
         riscv_set_arch ("RV32IMCXpulpv1");
         UpdatePulpChip(&Pulp_Chip, &Pulp_Defined_Chips[PULP_CHIP_PULPINO]);
@@ -309,6 +309,11 @@ static void pulp_set_chip(const char *arg)
   } else if (strncmp (p, "GAP9", 4) == 0) {
         riscv_set_arch ("RV32IMCXgap9");
         UpdatePulpChip(&Pulp_Chip, &Pulp_Defined_Chips[PULP_CHIP_GAP9]);
+  } else if (strncmp (p, "HUA20", 5) == 0) {
+        riscv_set_arch ("RV32IMCXgap9");
+	as_fatal ("#### unsupported pulp chip %s", p);
+        UpdatePulpChip(&Pulp_Chip, &Pulp_Defined_Chips[PULP_CHIP_GAP9]);
+	
   } else {
         as_fatal ("unsupported pulp chip %s", arg);
   }
