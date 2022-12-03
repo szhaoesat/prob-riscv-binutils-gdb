@@ -1,47 +1,50 @@
-		   README for GNU development tools
+Add follow instructions for probabilistic operations
 
-This directory contains various GNU compilers, assemblers, linkers, 
-debuggers, etc., plus their support routines, definitions, and documentation.
+pru.lw.hl        rd rs1 24..20=0 31..25=0x0  14..12=3 6..0=0x0b
+pru.add.hhl      rd rs1 rs2 31..25=0b000000 14..12=6 6..0=0x3b
+pru.sub.hhl      rd rs1 rs2 31..25=0b010100 14..12=6 6..0=0x3b
+pru.sll.hhl      rd rs1 rs2 31..25=0b000001 14..12=6 6..0=0x3b
+pru.slt.hhl      rd rs1 rs2 31..25=0b000010 14..12=6 6..0=0x3b
+pru.sltu.hhl     rd rs1 rs2 31..25=0b000011 14..12=6 6..0=0x3b
+pru.xor.hhl      rd rs1 rs2 31..25=0b000100 14..12=6 6..0=0x3b
+pru.srl.hhl      rd rs1 rs2 31..25=0b000101 14..12=6 6..0=0x3b
+pru.sra.hhl      rd rs1 rs2 31..25=0b000110 14..12=6 6..0=0x3b
+pru.or.hhl       rd rs1 rs2 31..25=0b000111 14..12=6 6..0=0x3b
+pru.and.hhl      rd rs1 rs2 31..25=0b010001 14..12=6 6..0=0x3b
 
-If you are receiving this as part of a GDB release, see the file gdb/README.
-If with a binutils release, see binutils/README;  if with a libg++ release,
-see libg++/README, etc.  That'll give you info about this
-package -- supported targets, how to use it, how to report bugs, etc.
+pru.mul.hhl      rd rs1 rs2 31..25=0b100000 14..12=6 6..0=0x3b
+pru.mulh.hhl     rd rs1 rs2 31..25=0b100001 14..12=6 6..0=0x3b
+pru.mulhsu.hhl   rd rs1 rs2 31..25=0b100010 14..12=6 6..0=0x3b
+pru.mulhu.hhl    rd rs1 rs2 31..25=0b100011 14..12=6 6..0=0x3b
+pru.div.hhl      rd rs1 rs2 31..25=0b100100 14..12=6 6..0=0x3b
+pru.divu.hhl     rd rs1 rs2 31..25=0b100101 14..12=6 6..0=0x3b
+pru.rem.hhl      rd rs1 rs2 31..25=0b100110 14..12=6 6..0=0x3b
+pru.remu.hhl     rd rs1 rs2 31..25=0b100111 14..12=6 6..0=0x3b
 
-It is now possible to automatically configure and build a variety of
-tools with one command.  To build all of the tools contained herein,
-run the ``configure'' script here, e.g.:
+pru.add.lhl      rd rs1 rs2 31..25=0b000000 14..12=2 6..0=0x3b
+pru.sub.lhl      rd rs1 rs2 31..25=0b010000 14..12=2 6..0=0x3b
+pru.sll.lhl      rd rs1 rs2 31..25=0b000001 14..12=2 6..0=0x3b
+pru.slt.lhl      rd rs1 rs2 31..25=0b000010 14..12=2 6..0=0x3b
+pru.sltu.lhl     rd rs1 rs2 31..25=0b000011 14..12=2 6..0=0x3b
+pru.xor.lhl      rd rs1 rs2 31..25=0b000100 14..12=2 6..0=0x3b
+pru.srl.lhl      rd rs1 rs2 31..25=0b000101 14..12=2 6..0=0x3b
+pru.sra.lhl      rd rs1 rs2 31..25=0b000110 14..12=2 6..0=0x3b
+pru.or.lhl       rd rs1 rs2 31..25=0b000111 14..12=2 6..0=0x3b
+pru.mul.lhl      rd rs1 rs2 31..25=0b001000 14..12=2 6..0=0x3b
+pru.mulh.lhl     rd rs1 rs2 31..25=0b001001 14..12=2 6..0=0x3b
+pru.mulhsu.lhl   rd rs1 rs2 31..25=0b001010 14..12=2 6..0=0x3b
+pru.mulhu.lhl    rd rs1 rs2 31..25=0b001011 14..12=2 6..0=0x3b
+pru.div.lhl      rd rs1 rs2 31..25=0b001100 14..12=2 6..0=0x3b
+pru.divu.lhl     rd rs1 rs2 31..25=0b001101 14..12=2 6..0=0x3b
+pru.rem.lhl      rd rs1 rs2 31..25=0b001110 14..12=2 6..0=0x3b
+pru.remu.lhl     rd rs1 rs2 31..25=0b001111 14..12=2 6..0=0x3b
 
-	./configure 
-	make
+pru.add.left     rd rs1 rs2 31..25=0x14  14..12=0 6..0=0x3b
+pru.add.up       rd rs1 rs2 31..25=0x15  14..12=0 6..0=0x3b
+pru.add.right    rd rs1 rs2 31..25=0x16  14..12=0 6..0=0x3b
+pru.add.down     rd rs1 rs2 31..25=0x17  14..12=0 6..0=0x3b
 
-To install them (by default in /usr/local/bin, /usr/local/lib, etc),
-then do:
-	make install
-
-(If the configure script can't determine your type of computer, give it
-the name as an argument, for instance ``./configure sun4''.  You can
-use the script ``config.sub'' to test whether a name is recognized; if
-it is, config.sub translates it to a triplet specifying CPU, vendor,
-and OS.)
-
-If you have more than one compiler on your system, it is often best to
-explicitly set CC in the environment before running configure, and to
-also set CC when running make.  For example (assuming sh/bash/ksh):
-
-	CC=gcc ./configure
-	make
-
-A similar example using csh:
-
-	setenv CC gcc
-	./configure
-	make
-
-Much of the code and documentation enclosed is copyright by
-the Free Software Foundation, Inc.  See the file COPYING or
-COPYING.LIB in the various directories, for a description of the
-GNU General Public License terms under which you can copy the files.
-
-REPORTING BUGS: Again, see gdb/README, binutils/README, etc., for info
-on where and how to report problems.
+pru.ky.ll        rd rs1 31..25=0x18 24..20=0 14..12=0 6..0=0x3b
+pru.lfsr.ll      rd rs1 31..25=0x19 24..20=0 14..12=0 6..0=0x3b
+pru.lut.ll       rd rs1 31..25=0x1A 24..20=0 14..12=0 6..0=0x3b
+pru.lut.hl       rd rs1 31..25=0x1B 24..20=0 14..12=6 6..0=0x3b
